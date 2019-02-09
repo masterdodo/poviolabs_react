@@ -17,7 +17,7 @@ export default {
     },
     {
       id: 2,
-      img: 'img/science-guy.jpg',
+      img: '/img/science-guy.jpg',
       text: 'Mind blown',
       color: 'white',
       fontSize: '30px',
@@ -28,7 +28,7 @@ export default {
     },
     {
       id: 3,
-      img: 'img/be-like-bill.jpg',
+      img: '/img/be-like-bill.jpg',
       text: 'Be like Bill',
       color: 'black',
       fontSize: '30px',

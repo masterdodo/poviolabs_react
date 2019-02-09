@@ -1,15 +1,56 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Details extends Component {
-    constructor(props){
+class Details extends Component {
+    constructor(props) {
         super(props);
 
-        console.log(this.props);
+        const { memes } = this.props;
+        const { id } = this.props.match.params;
+        const [currentMeme] = memes.filter(m => m.id === parseInt(id, 10));
+        this.state = { meme: currentMeme };
     }
+    render() {
+        const { meme } = this.state;
+        const style = { color: meme.color, fontSize: meme.fontSize };
+        console.log(meme)
+        console.log(meme.img)
+        return (
+            <div className="meme-details-wrapper">
+                <div className="meme-details-image">
+                    <img src={meme.img} alt="Details" />
+                    <div className="meme-text" style={style}>
+                        {meme.text}
+                    </div>
+                </div>
+                <div className="meme-description-wrapper">
+                    <div className="meme-description-top">
+                        <span className="meme-description-top-points">
+                            {meme.upvotes} points
+                        </span>
+                        <img
+                            className="meme-description-top-share"
+                            src={`${window.location.origin}/img/icon-share.svg`}
+                            alt="share"
+                        />
+                    </div>
 
-  render() {
-    return (
-      <div>test</div>
-    )
-  }
+                    <div className="meme-description-bottom">
+                        <div className="meme-description-bottom-user">
+                            <img src="https://via.placeholder.com/30" alt="test" />
+                            <span>{meme.author}</span>
+                        </div>
+                        <br />
+                        <div>
+                            <span className="meme-description-bottom-time">
+                                {new Date(meme.createdAt).toLocaleDateString()}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
+
+export default withRouter(Details);
